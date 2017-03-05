@@ -1,0 +1,14 @@
+#canvas {
+    cursor: url("cat.png"), pointer;
+    
+    float: right;
+}
+
+body {
+	width: 100%
+	height: auto;
+}
+
+#colorPalette {
+	
+}
