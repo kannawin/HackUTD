@@ -27,7 +27,7 @@ var io=require('socket.io').listen(app.listen(3700));
 io.sockets.on('connection',function(socket){
 	socket.emit('message',{ message:'welcome to the chat',username:'Server' });
 	socket.on('send',function(data){
-//		io.sockets.emit('name',data);
+		// io.sockets.emit('name',data);
 		io.sockets.emit('message',data);
 		console.log("message sent");
 	});
