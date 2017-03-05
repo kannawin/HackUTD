@@ -83,8 +83,8 @@ var socket = io.connect('http://localhost:3700');
 		
 
 		var a = document.getElementById('insert');
-		a.innerHTML = e.clientX + "  " + e.clientY + "  " + canvas.offsetLeft;
-		a.innerHTML += "  " + canvas.offsetTop + "   " + x + " x " + y;
+//		a.innerHTML = e.clientX + "  " + e.clientY + "  " + canvas.offsetLeft;
+//		a.innerHTML += "  " + canvas.offsetTop + "   " + x + " x " + y;
                 prevX = currX;
                 prevY = currY;
                 currX = (e.clientX*.5) - (canvas.offsetLeft);
