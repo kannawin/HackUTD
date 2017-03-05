@@ -1,20 +1,31 @@
 var express = require("express");
 var app = express();
-var port = 3700;
+//var app = require('http').createServer(handler)
+//	, io = require('socket.io').listen(app)
+//	, fs = require('fs')
+//app.listen(3700);
 
+function handler(req,res){
+	fs.readfile(__dirname + '/tpl/page.html',
+	function(err,data){
+		if(err){
+			res.writeHead(500);
+			return res.end('Error');
+		}
+		res.writeHead(200);
+		res.end(data);
+	});
+}
 
-app.set('views',__dirname + '/tpl');
-app.set('view engine', "jade");
-app.engine('jade',require('jade').__express);
-app.get("/",function(req,res){
-	res.render('page');
+app.get('/',function(req,res){
+	res.sendFile(__dirname + '/tpl/page.html');
 });
 
-app.use(express.static(__dirname+'/public'));
-var io=require('socket.io').listen(app.listen(port));
+app.use(express.static(__dirname + '/public'));
+var io=require('socket.io').listen(app.listen(3700));
 
 io.sockets.on('connection',function(socket){
-	socket.emit('message',{ message:'welcome to the chat' });
+	socket.emit('message',{ message:'welcome to the chat',username:'Server' });
 	socket.on('send',function(data){
 //		io.sockets.emit('name',data);
 		io.sockets.emit('message',data);
@@ -22,4 +33,4 @@ io.sockets.on('connection',function(socket){
 	});
 });
 
-console.log("Listening on port " + port);
+console.log("Listening on port " + 3700);

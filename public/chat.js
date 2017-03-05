@@ -7,14 +7,6 @@ window.onload = function(){
 	var content = document.getElementById('content');
 	var name = document.getElementById('name');
 	
-	socket.on('name',function(data){
-		unames.push(data.username);
-		var html = '';
-		for(var i =0;i<unames.length;i++){
-			html += '<b>' + unames[i] + ': </b>';
-		}
-		content.innerHTML = html;
-	});
 	socket.on('message',function(data){
 		if(data.message){
 			messages.push(data.message);
