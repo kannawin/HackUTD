@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title> web sockets are sick </title>
+<meta charset="utf-8">
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('http://localhost:8080');
+socket.on('news', function (data){
+	console.log(data);
+	writeMessage(data);
+	socket.emit('my other event', { my: 'data' });
+});
+socket.on('news2',function(data){
+	console.log(data);
+	writeMessage(data);
+	socket.emit('my other event', { my: 'texas' });
+});
+function writeMessage(msg){
+	var msgArea = document.getElementById("msgArea");
+	if (typeof msg == "object") {
+		msgArea.innerHTML = msg.hello;
+//		msgArea.innerHTML += msg.wassup;
+	}
+	else{
+		msgArea.innerHTML = msg;
+	}
+}
+changeText(){
+	var msgArea = document.getElementById('msgArea');
+	var textValue = document.getElementById('textArea').value;
+	msgArea.innerHTML += "<br>" + textValue;
+}
+</script>
+</head>
+<body>
+<div id='inputArea'>
+<input type='text' id='textArea'><br>
+<input type='submit' onclick='changeText()'>
+</div>
+<div id='msgArea'>
+</div>
+</body>
+</html>
