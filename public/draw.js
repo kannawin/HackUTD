@@ -4,7 +4,7 @@ var canvas, ctx, flag = false,
         prevY = 0,
         currY = 0,
         dot_flag = false;
-
+var socket = io.connect('http://localhost:3700');
     var x = "black",
         y = 2;
     
@@ -35,15 +35,15 @@ var canvas, ctx, flag = false,
     
     }
     
-    function draw() {
+    socket.on('drawable', function(data) {
         ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(currX, currY);
+        ctx.moveTo(data.pX, data.pY);
+        ctx.lineTo(data.cX, data.cY);
         ctx.strokeStyle = x;
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
-    }
+    });
     
     function erase() {
         ctx.clearRect(0, 0, w, h);
@@ -51,6 +51,7 @@ var canvas, ctx, flag = false,
     }
     
     function findxy(res, e) {
+	canvas = document.getElementById('canvas');
         if (res == 'down') {
             prevX = currX;
             prevY = currY;
@@ -72,11 +73,23 @@ var canvas, ctx, flag = false,
         }
         if (res == 'move') {
             if (flag) {
+		var w  = window,
+		    d  = w.document,
+		    de = d.documentElement,
+		    db = d.body || d.getElementsByTagName('body')[0],
+		    x  = w.innerWidth || de.clientWidth || db.clientWidth,
+		    y  = w.innerHeight|| de.clientHeight|| db.clientHeight;
+
+		
+
+		var a = document.getElementById('insert');
+		a.innerHTML = e.clientX + "  " + e.clientY + "  " + canvas.offsetLeft;
+		a.innerHTML += "  " + canvas.offsetTop + "   " + x + " x " + y;
                 prevX = currX;
                 prevY = currY;
-                currX = e.clientX - canvas.offsetLeft;
-                currY = e.clientY - canvas.offsetTop;
-                draw();
+                currX = (e.clientX*.5) - (canvas.offsetLeft);
+                currY = (e.clientY*.5) - (canvas.offsetTop);
+                socket.emit('draw',{pX : prevX, pY : prevY, cX : currX, cY : currY });
             }
         }
     }

@@ -15,17 +15,19 @@ body {
 
 #dickBox {
 	width: 30%;
-	float: left;
+	height: 50%;
+	float: right;
 }
 
 #vagBox {
-	width: 70%;
-	float: right;
+	width: 50%;
+	hieght: 50%;
+	float: left;
 }
 #content {
-	float: left;
+	float: right;
 }
 
 #controls {
-	float: left;
+	float: right;
 }
