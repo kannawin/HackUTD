@@ -10,9 +10,9 @@ window.onload = function(){
 	socket.on('message',function(data){
 		if(data.message){
 			messages.push(data.message);
-			unames.push(data.username);
-			if(name.value =="") unames.push("Guest User");
-			else unames.push(name.value);
+			if(data.username == "") var uname = "Guest User";
+			else var uname = data.username;
+			unames.push(uname);
 			var html = '';
 			for(var i=0;i<messages.length;i++){
 				html += '<b>' + unames[i] + ': </b>';
