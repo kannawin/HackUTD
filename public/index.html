@@ -6,31 +6,37 @@
 		<script src='/socket.io/socket.io.js'></script>
 		<script type="text/javascript" src="draw.js"></script>
         <link rel="stylesheet" href="style.css">
-	</head><body>
-		<div id='content' style='width:500px;height:300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;'></div>
-		<div id='controls'>
-			Name:
-			<input type='text' id='name' style='width:350px;'/>
-			<br>
-			<input type='text' id='field' style='width:350px;'/>
-			<input id='send' type='button' value='send'>
+	</head>
+	<body onload="init()">
+		<div id="dickBox">
+			<div id='content' style='width:500px;height:300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;'></div>
+			<div id='controls' style="width: 30%;">
+				Name:
+				<input type='text' id='name' style='width:350px;'/>
+				<br>
+				<input type='text' id='field' style='width:350px;'/>
+				<input id='send' type='button' value='send'>
+			</div>
 		</div>
-		<body onload="init()">
-        <canvas id="canvas" width="400" height="400" style="top:10%;left:10%;border:2px solid;"></canvas>
-        <div id="colorPalette">
-            <div style="top:12%;left:43%;">Choose Color</div>
-            <div style="top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
-            <div style="top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
-            <div style="top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
-            <div style="top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
-            <div style="top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
-            <div style="top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
-            <div style="top:20%;left:43%;">Eraser</div>
-            <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
-        </div>
+		<div id="vagBox">
+			<canvas id="canvas" style="border:2px solid;"></canvas>
+	        <div id="colorPalette">
+	            <div style="top:12%;left:43%;">Choose Color</div>
+	            <div style="top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+	            <div style="top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+	            <div style="top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+	            <div style="top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+	            <div style="top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+	            <div style="top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+	            <div style="top:20%;left:43%;">Eraser</div>
+	            <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+	        </div>
         
-        <input type="button" value="save" id="btn" size="30" onclick="save()" style="top:55%;left:10%;">
-        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="top:55%;left:15%;">
+	        <input type="button" value="save" id="btn" size="30" onclick="save()" style="top:55%;left:10%;">
+	        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="top:55%;left:15%;">
+		</div>
+
+        
 	</body>
 </html>
 

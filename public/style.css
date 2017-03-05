@@ -1,7 +1,7 @@
 #canvas {
     cursor: url("cat.png"), pointer;
     
-    float: right;
+    width: 100%;
 }
 
 body {
@@ -11,4 +11,21 @@ body {
 
 #colorPalette {
 	
+}
+
+#dickBox {
+	width: 30%;
+	float: left;
+}
+
+#vagBox {
+	width: 70%;
+	float: right;
+}
+#content {
+	float: left;
+}
+
+#controls {
+	float: left;
 }
