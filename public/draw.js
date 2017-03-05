@@ -39,7 +39,7 @@ var socket = io.connect('http://localhost:3700');
         ctx.beginPath();
         ctx.moveTo(data.pX, data.pY);
         ctx.lineTo(data.cX, data.cY);
-        ctx.strokeStyle = x;
+        ctx.strokeStyle = data.xx;
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
@@ -77,7 +77,7 @@ var socket = io.connect('http://localhost:3700');
 		    d  = w.document,
 		    de = d.documentElement,
 		    db = d.body || d.getElementsByTagName('body')[0],
-		    x  = w.innerWidth || de.clientWidth || db.clientWidth,
+		    m  = w.innerWidth || de.clientWidth || db.clientWidth,
 		    y  = w.innerHeight|| de.clientHeight|| db.clientHeight;
 
 		
@@ -89,7 +89,7 @@ var socket = io.connect('http://localhost:3700');
                 prevY = currY;
                 currX = (e.clientX*.5) - (canvas.offsetLeft);
                 currY = (e.clientY*.5) - (canvas.offsetTop);
-                socket.emit('draw',{pX : prevX, pY : prevY, cX : currX, cY : currY });
+                socket.emit('draw',{pX : prevX, pY : prevY, cX : currX, cY : currY, yy : y, xx : x });
             }
         }
     }
