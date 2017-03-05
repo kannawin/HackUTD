@@ -6,7 +6,7 @@ var app = express();
 //app.listen(3700);
 
 function handler(req,res){
-	fs.readfile(__dirname + '/tpl/page.html',
+	fs.readfile(__dirname + '/tpl/index.html',
 	function(err,data){
 		if(err){
 			res.writeHead(500);
@@ -18,7 +18,7 @@ function handler(req,res){
 }
 
 app.get('/',function(req,res){
-	res.sendFile(__dirname + '/tpl/page.html');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
 app.use(express.static(__dirname + '/public'));
